@@ -1,0 +1,8 @@
+to change module name use
+go mod edit -module new_mod_name
+but this doesnt change the already written code inside
+https://stackoverflow.com/questions/60165440/how-do-i-refactor-module-name-in-go
+https://fig.io/manual/go/mod/edit
+
+SQL doesn't support uint var, when we declare uint in ORM, it will be converted to bigint
+https://stackoverflow.com/questions/4451967/why-doesnt-sql-server-support-unsigned-datatype
