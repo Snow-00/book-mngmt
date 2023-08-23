@@ -1,4 +1,2 @@
-replit.nix
+.env
 book-mngmt
-.replit
-.cache
