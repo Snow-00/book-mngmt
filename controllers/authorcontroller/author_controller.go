@@ -5,10 +5,14 @@ import (
 
   "github.com/Snow-00/book-mngmt/entities"
   "github.com/Snow-00/book-mngmt/config"
+  "github.com/Snow-00/book-mngmt/models/authormodel"
+  "github.com/Snow-00/book-mngmt/helper"
 )
 
 func Index(w http.ResponseWriter, r *http.Request){
-  var authors []entities.Author
+  authors, err := authormodel.GetAll()
 
-  if err:= config.DB
+  if err != nil {
+    
+  }
 }
