@@ -10,3 +10,7 @@ https://stackoverflow.com/questions/4451967/why-doesnt-sql-server-support-unsign
 maybe SQL can support uint
 https://blog.devart.com/mysql-int-data-type.html
 
+any  = interface {}
+any is a new alias for interface{} in go 1.18+
+there is a little diff in output between those 2 but it's still unclear
+https://www.reddit.com/r/golang/comments/tq84lp/no_need_for_empty_interface_in_go_118/
