@@ -24,12 +24,14 @@ func GetAll() ([]entities.Author, error) {
       &author.CreatedAt,
       &author.UpdatedAt,
     )
+    
     if err != nil {
       return authors, err
     }
-
     authors = append(authors, author)
   }
 
   return authors, err
 }
+
+func Create()

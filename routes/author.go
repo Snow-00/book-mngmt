@@ -8,5 +8,6 @@ import (
 func AuthorRoutes(r *mux.Router){
   authorRoute := r.PathPrefix("/authors").Subrouter()
 
-  authorRoute.HandleFunc("", authorcontroller.Index).Method("GET")
+  authorRoute.HandleFunc("", authorcontroller.Index).Methods("GET")
+  authorRoute.HandleFunc("/create", authorcontroller.Create).Methods("POST")
 }
