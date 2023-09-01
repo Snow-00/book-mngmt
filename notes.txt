@@ -14,3 +14,9 @@ any  = interface {}
 any is a new alias for interface{} in go 1.18+
 there is a little diff in output between those 2 but it's still unclear
 https://www.reddit.com/r/golang/comments/tq84lp/no_need_for_empty_interface_in_go_118/
+
+to check if the data exist use sql.ErrNoRows
+https://stackoverflow.com/questions/60123848/does-db-query-return-errnorows
+
+errors.Is is the same as err == something, don't know why we're using this exactly
+https://pkg.go.dev/errors

@@ -5,6 +5,7 @@ import (
   "errors"
   "net/http"
   "encoding/json"
+  "database/sql"
 
   "github.com/Snow-00/book-mngmt/entities"
   // "github.com/Snow-00/book-mngmt/config"
@@ -47,6 +48,18 @@ func Detail(w http.ResponseWriter, r *http.Request) {
 
   author, err := authormodel.Detail(id)
   if err != nil {
-    if errors.Is(err, )
+    if errors.Is(err, sql.ErrNoRows) {
+      helper.Response(w, 404, "Author not found", nil)
+      return
+    }
+
+    helper.Response(w, 500, err.Error(), nil)
+    return
   }
+
+  helper.Response(w, 200, "Detail of Author", author)
+}
+
+func Update(w http.ResponseWriter, r *http.Request) {
+  
 }

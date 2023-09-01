@@ -46,18 +46,13 @@ func Create(author entities.Author) error {
   return err
 }
 
-func Detail(id uint) (entities.Author, error) {
+func Detail(id int) (entities.Author, error) {
   var author entities.Author
 
-  row, err := config.DB.QueryRow(
+  row := config.DB.QueryRow(
     `SELECT * FROM authors WHERE id=?`,
     id,
   )
-
-  if err != nil {
-    return nil, err
-  }
-  defer row.Close()
 
   err := row.Scan(
     &author.ID,
