@@ -8,7 +8,7 @@ import (
 func GetAll() ([]entities.Author, error) {
   var authors []entities.Author
 
-  rows, err := config.DB.Query(`SELECT * FROM authors`)
+  rows, err := config.DB.Query(`SELECT * FROM authors;`)
   if err != nil {
     return authors, err
   }
@@ -50,7 +50,7 @@ func Detail(id int) (entities.Author, error) {
   var author entities.Author
 
   row := config.DB.QueryRow(
-    `SELECT * FROM authors WHERE id=?`,
+    `SELECT * FROM authors WHERE id=?;`,
     id,
   )
 
@@ -64,4 +64,18 @@ func Detail(id int) (entities.Author, error) {
   )
 
   return author, err
+}
+
+func Update(author entities.Author, id int) error {
+  _, err := config.DB.Exec(
+    `UPDATE authors
+    SET name = ?, gender = ?, email = ?, updated_at = CURRENT_TIMESTAMP
+    WHERE id = ?;`,
+    author.Name,
+    author.Gender,
+    author.Email,
+    id,
+  )
+  
+  return err
 }

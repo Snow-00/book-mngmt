@@ -11,4 +11,5 @@ func AuthorRoutes(r *mux.Router){
   authorRoute.HandleFunc("", authorcontroller.Index).Methods("GET")
   authorRoute.HandleFunc("/create", authorcontroller.Create).Methods("POST")
   authorRoute.HandleFunc("/detail/{id}", authorcontroller.Detail).Methods("GET")
+  authorRoute.HandleFunc("/update/{id}", authorcontroller.Update).Methods("PUT")
 }

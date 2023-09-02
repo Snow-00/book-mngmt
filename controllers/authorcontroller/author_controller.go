@@ -61,5 +61,34 @@ func Detail(w http.ResponseWriter, r *http.Request) {
 }
 
 func Update(w http.ResponseWriter, r *http.Request) {
+  var author entities.Author
   
+  idParam := mux.Vars(r)["id"]
+  id, _ := strconv.Atoi(idParam)
+
+  // check whether data exist
+  _, err := authormodel.Detail(id)
+  if err != nil {
+    if errors.Is(err, sql.ErrNoRows) {
+      helper.Response(w, 404, "Author not found", nil)
+      return
+    }
+
+    helper.Response(w, 500, err.Error(), nil)
+    return
+  }
+
+  // update data
+  if err := json.NewDecoder(r.Body).Decode(&author); err != nil {
+    helper.Response(w, 500, err.Error(), nil)
+    return
+  }
+  defer r.Body.Close()
+
+  if err := authormodel.Update(author, id); err != nil {
+    helper.Response(w, 500, err.Error(), nil)
+    return
+  }
+
+  helper.Response(w, 201, "Success update author", nil)
 }
