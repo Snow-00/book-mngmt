@@ -8,7 +8,6 @@ import (
   "database/sql"
 
   "github.com/Snow-00/book-mngmt/entities"
-  // "github.com/Snow-00/book-mngmt/config"
   "github.com/Snow-00/book-mngmt/models/authormodel"
   "github.com/Snow-00/book-mngmt/helper"
   "github.com/gorilla/mux"
@@ -91,4 +90,17 @@ func Update(w http.ResponseWriter, r *http.Request) {
   }
 
   helper.Response(w, 201, "Success update author", nil)
+}
+
+func Delete(w http.ResponseWriter, r *http.Request) {
+  idParam := mux.Vars(r)["id"]
+  id, _ := strconv.Atoi(idParam)
+
+  err := authormodel.Delete(id)
+  if err != nil {
+    helper.Response(w, 500, err.Error(), nil)
+    return
+  }
+
+  helper.Response(w, 200, "Success delete author", nil)
 }
