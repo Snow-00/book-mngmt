@@ -5,13 +5,13 @@ import (
 
   "github.com/Snow-00/book-mngmt/helper"
   "github.com/Snow-00/book-mngmt/entities"
-  "github.com/Snow-00/book-mngmt/controllers/bookcontroller"
+  "github.com/Snow-00/book-mngmt/models/bookmodel"
 )
 
 func Index(w http.ResponseWriter, r *http.Request) {
   var books []entities.Book
 
-  books, err := bookcontroller.GetAll()
+  books, err := bookmodel.GetAll()
   if err != nil {
     helper.Response(w, 500, err.Error(), nil)
     return

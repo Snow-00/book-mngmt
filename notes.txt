@@ -20,3 +20,7 @@ https://stackoverflow.com/questions/60123848/does-db-query-return-errnorows
 
 errors.Is is the same as err == something, don't know why we're using this exactly
 https://pkg.go.dev/errors
+
+when we join tables, we now use JOIN instead of WHERE, its so we can differ the use of joining tables and filtering query
+https://learnsql.com/blog/joins-vs-multiple-tables-in-from/
+https://learnsql.com/blog/how-to-join-two-tables-in-sql/

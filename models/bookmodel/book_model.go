@@ -6,9 +6,22 @@ import (
 )
 
 func GetAll() ([]entities.Book, error) {
-  var books []entites.Book
+  var books []entities.Book
 
-  rows, err := config.DB.Exec(`SELECT * FROM books;`)
+  rows, err := config.DB.Query(
+    `SELECT
+            b.id,
+            b.title,
+            a.name AS author,
+            b.year,
+            b.publisher,
+            b.description,
+            b.created_at,
+            b.updated_at
+     FROM books b
+     JOIN authors a ON b.author_id = a.id;`,
+  )
+
   if err != nil {
     return books, err
   }
@@ -19,9 +32,9 @@ func GetAll() ([]entities.Book, error) {
     err := rows.Scan(
       &book.ID,
       &book.Title,
-      &book.AuthorID,
+      &book.Author.Name,
       &book.Year,
-      &book.Publication,
+      &book.Publisher,
       &book.Description,
       &book.CreatedAt,
       &book.UpdatedAt,
@@ -34,5 +47,5 @@ func GetAll() ([]entities.Book, error) {
     books = append(books, book)
   }
 
-  return books, book
+  return books, err
 }
