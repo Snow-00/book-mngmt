@@ -27,3 +27,6 @@ https://learnsql.com/blog/how-to-join-two-tables-in-sql/
 
 we can select * when joining 2 talbes using for example p.*
 https://stackoverflow.com/questions/12901614/sql-select-statements-with-multiple-tables
+
+rows.Scan() without writing it down 1 by 1, use reflect
+https://stackoverflow.com/questions/56525471/how-to-use-rows-scan-of-gos-database-sql
