@@ -9,4 +9,5 @@ func BookRoutes(r *mux.Router){
   booksRoute := r.PathPrefix("/books").Subrouter()
 
   booksRoute.HandleFunc("", bookcontroller.Index).Methods("GET")
+  booksRoute.HandleFunc("/create", bookcontroller.Create).Methods("POST")
 }

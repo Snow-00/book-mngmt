@@ -12,12 +12,13 @@ func GetAll() ([]entities.Book, error) {
     `SELECT
             b.id,
             b.title,
-            a.name AS author,
             b.year,
             b.publisher,
             b.description,
             b.created_at,
-            b.updated_at
+            b.updated_at,
+            a.id AS author_id,
+            a.name AS author
      FROM books b
      JOIN authors a ON b.author_id = a.id;`,
   )
@@ -32,12 +33,13 @@ func GetAll() ([]entities.Book, error) {
     err := rows.Scan(
       &book.ID,
       &book.Title,
-      &book.Author.Name,
       &book.Year,
       &book.Publisher,
       &book.Description,
       &book.CreatedAt,
       &book.UpdatedAt,
+      &book.Author.ID,
+      &book.Author.Name,
     )
 
     if err != nil {
@@ -48,4 +50,18 @@ func GetAll() ([]entities.Book, error) {
   }
 
   return books, err
+}
+
+func Create(book entities.Book) error {
+  _, err := config.DB.Exec(
+    `INSERT INTO books (title, year, publisher, description, author_id, created_at, updated_at)
+    VALUES (?, ?, ?, ?, ?, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP)`,
+    &book.Title,
+    &book.Year,
+    &book.Publisher,
+    &book.Description,
+    &book.Author.ID,
+  )
+
+  return err
 }
