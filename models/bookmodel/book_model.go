@@ -116,3 +116,12 @@ func Update(book entities.Book, id int) error {
 
   return err
 }
+
+func Delete(id int) error {
+  _, err := config.DB.Exec(
+    `DELETE FROM books WHERE id = ?`,
+    id,
+  )
+
+  return err
+}

@@ -1,7 +1,7 @@
 {
-  "title": "book 2",
-  "author": {"id": 3},
-  "year": 2007,
-  "publisher": "publisher 2",
-  "description": "testing book 2"
+  "title": "book update",
+  "author": {"id": 2},
+  "year": 2010,
+  "publisher": "publisher update",
+  "description": "testing book update update"
 }

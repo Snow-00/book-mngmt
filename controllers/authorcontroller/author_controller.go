@@ -96,8 +96,19 @@ func Delete(w http.ResponseWriter, r *http.Request) {
   idParam := mux.Vars(r)["id"]
   id, _ := strconv.Atoi(idParam)
 
-  err := authormodel.Delete(id)
+  // check data exist
+  _, err := authormodel.Detail(id)
   if err != nil {
+    if errors.Is(err, sql.ErrNoRows) {
+      helper.Response(w, 404, "Author not found", nil)
+      return
+    }
+
+    helper.Response(w, 500, err.Error(), nil)
+    return
+  }
+  
+  if err := authormodel.Delete(id); err != nil {
     helper.Response(w, 500, err.Error(), nil)
     return
   }
