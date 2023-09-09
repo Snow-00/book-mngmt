@@ -1,5 +1,7 @@
 {
-  "name": "user_3",
-  "gender": "M",
-  "email": "user_3@gmail.com"
+  "title": "book 2",
+  "author": {"id": 3},
+  "year": 2007,
+  "publisher": "publisher 2",
+  "description": "testing book 2"
 }

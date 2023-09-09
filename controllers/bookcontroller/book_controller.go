@@ -1,12 +1,16 @@
 package bookcontroller
 
 import (
-  "net/http"
-  "encoding/json"
+	"database/sql"
+	"encoding/json"
+	"errors"
+	"net/http"
+	"strconv"
 
-  "github.com/Snow-00/book-mngmt/helper"
-  "github.com/Snow-00/book-mngmt/entities"
-  "github.com/Snow-00/book-mngmt/models/bookmodel"
+	"github.com/Snow-00/book-mngmt/entities"
+	"github.com/Snow-00/book-mngmt/helper"
+	"github.com/Snow-00/book-mngmt/models/bookmodel"
+	"github.com/gorilla/mux"
 )
 
 func Index(w http.ResponseWriter, r *http.Request) {
@@ -36,4 +40,26 @@ func Create(w http.ResponseWriter, r *http.Request) {
   }
 
   helper.Response(w, 201, "Success create book", nil)
+}
+
+func Detail(w http.ResponseWriter, r *http.Request) {
+  idParam := mux.Vars(r)["id"]
+  id, _ := strconv.Atoi(idParam)
+
+  book, err := bookmodel.Detail(id)
+  if err != nil {
+    if errors.Is(err, sql.ErrNoRows) {
+      helper.Response(w, 404, "Book not found", nil)
+      return
+    }
+    
+    helper.Response(w, 500, err.Error(), nil)
+    return
+  }
+
+  helper.Response(w, 200, "Book Detail", book)
+}
+
+func Update(w http.ResponseWriter, r *http.Request) {
+  
 }

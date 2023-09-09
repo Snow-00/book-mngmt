@@ -65,3 +65,54 @@ func Create(book entities.Book) error {
 
   return err
 }
+
+func Detail(id int) (entities.Book, error) {
+  var book entities.Book
+
+  row := config.DB.QueryRow(
+    `SELECT
+            b.id,
+            b.title,
+            b.year,
+            b.publisher,
+            b.description,
+            b.created_at,
+            b.updated_at,
+            a.id AS author_id,
+            a.name AS author
+    FROM books b
+    JOIN authors a ON b.author_id = a.id
+    WHERE b.id = ?`,
+    id,
+  )
+
+  err := row.Scan(
+    &book.ID,
+    &book.Title,
+    &book.Year,
+    &book.Publisher,
+    &book.Description,
+    &book.CreatedAt,
+    &book.UpdatedAt,
+    &book.Author.ID,
+    &book.Author.Name,
+  )
+
+  return book, err
+}
+
+func Update(book entities.Book, id int) error {
+  _, err := config.DB.Exec(
+    `UPDATE books
+    SET title = ?, year = ?, publisher = ?, description = ?, author_id = ?, updated_at = CURRENT_TIMESTAMP
+    WHERE id = ?`,
+    &book.Title,
+    &book.Year,
+    &book.Publisher,
+    &book.Description,
+    &book.Author.ID,
+    id,
+  )
+
+  return err
+}

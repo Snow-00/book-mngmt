@@ -10,4 +10,5 @@ func BookRoutes(r *mux.Router){
 
   booksRoute.HandleFunc("", bookcontroller.Index).Methods("GET")
   booksRoute.HandleFunc("/create", bookcontroller.Create).Methods("POST")
+  booksRoute.HandleFunc("/detail/{id}", bookcontroller.Detail).Methods("GET")
 }
