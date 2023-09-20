@@ -30,3 +30,5 @@ https://stackoverflow.com/questions/12901614/sql-select-statements-with-multiple
 
 rows.Scan() without writing it down 1 by 1, use reflect, but can't be used for join tables
 https://stackoverflow.com/questions/56525471/how-to-use-rows-scan-of-gos-database-sql
+
+sql injection cannot be solved by just adding \ in the WHERE = '...
