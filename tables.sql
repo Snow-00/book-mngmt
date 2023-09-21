@@ -20,3 +20,13 @@ CREATE TABLE `authors` (
   `updated_at` timestamp NOT NULL,
   PRIMARY KEY (`id`)
 );
+
+CREATE TABLE `users` (
+  `id` int AUTO_INCREMENT,
+  `username` varchar(100) NOT NULL,
+  `hash_password` varchar(100) NOT NULL,
+  `is_deleted` int NOT NULL,
+  `created_at` timestamp NOT NULL,
+  `updated_at` timestamp NOT NULL,
+  PRIMARY KEY (`id`)
+)

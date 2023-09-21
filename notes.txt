@@ -32,3 +32,8 @@ rows.Scan() without writing it down 1 by 1, use reflect, but can't be used for j
 https://stackoverflow.com/questions/56525471/how-to-use-rows-scan-of-gos-database-sql
 
 sql injection cannot be solved by just adding \ in the WHERE = '...
+
+in golang we're already protected from sql injection when we're using the sql golang func
+https://www.stackhawk.com/blog/golang-sql-injection-guide-examples-and-prevention/
+
+untuk menghapus data di database baiknya secara soft / pake column is_deleted biar ada backup an nya, engga langsung ilang datanya
