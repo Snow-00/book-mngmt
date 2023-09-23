@@ -3,10 +3,11 @@ package usercontroller
 import (
 	"encoding/json"
 	"net/http"
+  "errors"
 
 	"github.com/Snow-00/book-mngmt/helper"
   "github.com/Snow-00/book-mngmt/entities"
-	"github.com/Snow-00/book-mngmt/usermodel"
+	"github.com/Snow-00/book-mngmt/models/usermodel"
 )
 
 func Register(w http.ResponseWriter, r *http.Request) {
@@ -29,9 +30,9 @@ func Register(w http.ResponseWriter, r *http.Request) {
     return
   }
 
-  user := usermodel.User{
+  user := entities.User{
     Username: register.Username,
-    HashPassword: register.HashPassword,
+    HashPassword: hashPassword,
     Role: register.Role,
   }
   
@@ -41,4 +42,30 @@ func Register(w http.ResponseWriter, r *http.Request) {
   }
 
   helper.Response(w, 201, "Register success", nil)
+}
+
+func Login(w http.ResponseWriter, r *Request) {
+  var login entities.Login
+
+  if err := json.NewDecoder(r.Body).Decode(&login); err != nil {
+    helper.Response(w, 500, err.Error(), nil)
+    return
+  }
+  defer r.Body.Close()
+
+  user, err := usermodel.Login(login.Username)
+  if err != nil {
+    if errors.Is(err, sql.ErrNoRows) {
+      helper.Response(w, 404, "User not found", nil)
+      return
+    }
+
+    helper.Response(w, 500, err.Error(), nil)
+    return
+  }
+
+  if err := helper.VerifyPassword(user.HashPassword, login.Password); err != nil {
+    helper.Response(w, 404, "Wrong Password", nil)
+    return
+  }
 }
