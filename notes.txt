@@ -37,3 +37,8 @@ in golang we're already protected from sql injection when we're using the sql go
 https://www.stackhawk.com/blog/golang-sql-injection-guide-examples-and-prevention/
 
 untuk menghapus data di database baiknya secara soft / pake column is_deleted biar ada backup an nya, engga langsung ilang datanya
+
+beda varchar and char, kalo char itu fixed lenght dan kalo varchar menyesuaikan data kt
+https://petri.com/sql-server-string-data-types/#:~:text=What's%20the%20difference%20between%20CHAR,up%201%20byte%20per%20character.
+
+null in mysql only means there is a 1 more possible data that is null

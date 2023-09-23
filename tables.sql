@@ -25,6 +25,7 @@ CREATE TABLE `users` (
   `id` int AUTO_INCREMENT,
   `username` varchar(100) NOT NULL,
   `hash_password` varchar(100) NOT NULL,
+  `role` varchar(50) NOT NULL,
   `is_deleted` boolean NOT NULL,
   `created_at` timestamp NOT NULL,
   `updated_at` timestamp NOT NULL,
