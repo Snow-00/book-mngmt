@@ -42,3 +42,9 @@ beda varchar and char, kalo char itu fixed lenght dan kalo varchar menyesuaikan 
 https://petri.com/sql-server-string-data-types/#:~:text=What's%20the%20difference%20between%20CHAR,up%201%20byte%20per%20character.
 
 null in mysql only means there is a 1 more possible data that is null
+
+
+PERTANYAAN?????
+ketika login, isi claims di token apa?
+
+bagaimana cara memvalidasi bahwa token yg tergenerate role nya admin / user?

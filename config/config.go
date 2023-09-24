@@ -12,6 +12,7 @@ type Config struct {
 	DB_PASSWORD string
 	DB_USER 	string
 	DB_HOST 	string
+	SECRET		string
 }
 
 var ENV Config
