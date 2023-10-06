@@ -1,7 +1,4 @@
 {
-  "title": "book update",
-  "author": {"id": 2},
-  "year": 2010,
-  "publisher": "publisher update",
-  "description": "testing book update update"
+  "username": "Username_2",
+  "password": "username123"
 }

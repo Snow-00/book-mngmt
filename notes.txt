@@ -43,8 +43,19 @@ https://petri.com/sql-server-string-data-types/#:~:text=What's%20the%20differenc
 
 null in mysql only means there is a 1 more possible data that is null
 
+when initializing struct var, choose wether u want to use format:
+field: value
+value
+https://stackoverflow.com/questions/27626765/mixture-of-fieldvalue-and-value-initializers
+
+username n password
+{
+  "username": "Username_2",
+  "password": "username123"
+}
 
 PERTANYAAN?????
 ketika login, isi claims di token apa?
 
 bagaimana cara memvalidasi bahwa token yg tergenerate role nya admin / user?
+

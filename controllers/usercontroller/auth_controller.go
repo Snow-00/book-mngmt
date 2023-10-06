@@ -2,6 +2,7 @@ package usercontroller
 
 import (
 	"encoding/json"
+  "database/sql"
 	"net/http"
   "errors"
 
@@ -45,7 +46,7 @@ func Register(w http.ResponseWriter, r *http.Request) {
   helper.Response(w, 201, "Register success", nil)
 }
 
-func Login(w http.ResponseWriter, r *Request) {
+func Login(w http.ResponseWriter, r *http.Request) {
   var login entities.Login
 
   if err := json.NewDecoder(r.Body).Decode(&login); err != nil {

@@ -8,7 +8,7 @@ import (
 	"github.com/Snow-00/book-mngmt/config"
 )
 
-// var expDate = 2 * time.Minute
+var expDate = 2 * time.Minute
 var mySigningKey = []byte(config.ENV.SECRET)
 
 type MyCustomClaims struct {
@@ -20,11 +20,11 @@ type MyCustomClaims struct {
 
 func CreateToken(user *entities.User) (string, error) {
 	claims := MyCustomClaims{
-		ID: user.ID,
-		Username: user.Username,
-		Role: user.Role,
+		user.ID,
+		user.Username,
+		user.Role,
 		jwt.RegisteredClaims{
-			ExpiresAt: jwt.NewNumericDate(time.Now().Add(2 * time.Minute)),
+			ExpiresAt: jwt.NewNumericDate(time.Now().Add(expDate)),
 			IssuedAt: jwt.NewNumericDate(time.Now()),
 			NotBefore: jwt.NewNumericDate(time.Now()),
 		},
