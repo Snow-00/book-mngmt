@@ -1,2 +1,5 @@
 .env
 book-mngmt
+.replit
+.cache
+.config
